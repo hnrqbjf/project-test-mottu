@@ -1,0 +1,21 @@
+{
+  "name": "projeto-teste-muttu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "PWDEBUG=true playwright test",
+    "test-tag": "playwright test --project=Chrome --grep"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.36.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}

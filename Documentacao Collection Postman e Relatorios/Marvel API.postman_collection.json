@@ -1,0 +1,2087 @@
+{
+	"info": {
+		"_postman_id": "1450d1b8-3e0b-4d50-bcaa-6ba3463c91b9",
+		"name": "Marvel API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28808961"
+	},
+	"item": [
+		{
+			"name": "/v1/public/comics - Fetches lists of comics",
+			"item": [
+				{
+					"name": "/v1/public/comics - [200] - Order by issueNumber ascending",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"A status property is present and is 'success'\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql('Ok');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status returning Ok\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql(\"Ok\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Count should not be empty\", function () {\r",
+									"    pm.expect(jsonData.data.count).to.not.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results array should not be empty\", function () {\r",
+									"    pm.expect(jsonData.data.results).to.be.an('array').and.to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header etag should return\", function () {\r",
+									"    pm.expect(pm.response.headers.has('etag')).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Id should be a number\", function () {\r",
+									"    jsonData.data.results.forEach(function (result) {\r",
+									"        pm.expect(result.id).to.be.a('number');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Issue number should be ordered in ascending order\", function () {\r",
+									"    var issueNumbers = jsonData.data.results.map(function (result) {\r",
+									"        return result.issueNumber;\r",
+									"    });\r",
+									"    for (var i = 0; i < issueNumbers.length - 1; i++) {\r",
+									"        pm.expect(issueNumbers[i]).to.be.at.most(issueNumbers[i + 1]);\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&characters={{characters}}&limit={{limit}}&orderBy=issueNumber",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								},
+								{
+									"key": "orderBy",
+									"value": "issueNumber"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics - [200] - Order by issueNumber descending",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"A status property is present and is 'success'\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql('Ok');\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"pm.test(\"Status returning Ok\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql(\"Ok\");\r",
+									"});\r",
+									"pm.test(\"Response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"pm.test(\"Count should not be empty\", function () {\r",
+									"    pm.expect(jsonData.data.count).to.not.eql(0);\r",
+									"});\r",
+									"pm.test(\"Results array should not be empty\", function () {\r",
+									"    pm.expect(jsonData.data.results).to.be.an('array').and.to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"Header etag should return\", function () {\r",
+									"    pm.expect(pm.response.headers.has('etag')).to.be.true;\r",
+									"});\r",
+									"pm.test(\"Id should be a number\", function () {\r",
+									"    jsonData.data.results.forEach(function (result) {\r",
+									"        pm.expect(result.id).to.be.a('number');\r",
+									"    });\r",
+									"});\r",
+									"pm.test(\"Results should be ordered by descending issueNumber\", function () {\r",
+									"    var sortedResults = jsonData.data.results.sort(function (a, b) {\r",
+									"        return b.issueNumber - a.issueNumber;\r",
+									"    });\r",
+									"    pm.expect(jsonData.data.results).to.deep.equal(sortedResults);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&characters={{characters}}&limit={{limit}}&orderBy=-issueNumber",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								},
+								{
+									"key": "orderBy",
+									"value": "-issueNumber"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics  - [401] - Invalid Hash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"That hash, timestamp and key combination is invalid.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+\"123\"+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&characters={{characters}}&limit={{limit}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics  - [405] - Method Not Allowed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"POST is not allowed\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&characters={{characters}}&limit={{limit}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics  - [409] - Missing API Key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"You must provide a user key.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+\"123\"+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?ts={{ts}}&hash={{hash}}&characters={{characters}}&limit={{limit}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}",
+									"disabled": true
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics  - [409] - Missing Hash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"You must provide a hash.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+\"123\"+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&ts={{ts}}&characters={{characters}}&limit={{limit}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}",
+									"disabled": true
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics  - [409] - Missing Timestamp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"You must provide a timestamp.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+\"123\"+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&hash={{hash}}&characters={{characters}}&limit={{limit}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}",
+									"disabled": true
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics  - [409] - Limit invalid or below 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql(\"You must pass an integer limit greater than 0.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&characters={{characters}}&limit=h",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "h"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics  - [409] - Limit greater than 100",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql(\"You may not request more than 100 items.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&characters={{characters}}&limit=101",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "101"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics  - [409] - Empty parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql(\"You must pass at least one valid story id if you set the story filter.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&characters={{characters}}&limit={{limit}}&stories=",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								},
+								{
+									"key": "stories",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics  - [409] - Empty parameter Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql(\"We don't recognize the parameter foo\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&characters={{characters}}&limit={{limit}}&foo=bar",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "characters",
+									"value": "{{characters}}"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}"
+								},
+								{
+									"key": "foo",
+									"value": "bar"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/v1/public/comics/{comicId}/characters - Fetches lists of characters filtered by a comic id",
+			"item": [
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [200] - Order by name ascending",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status returning Ok\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql(\"Ok\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Count should not be empty\", function () {\r",
+									"    pm.expect(jsonData.data.count).to.not.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results array should not be empty\", function () {\r",
+									"    pm.expect(jsonData.data.results).to.be.an('array').and.to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header etag should return\", function () {\r",
+									"    pm.expect(pm.response.headers.has('etag')).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Id should be a number\", function () {\r",
+									"    jsonData.data.results.forEach(function (result) {\r",
+									"        pm.expect(result.id).to.be.a('number');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name should be a string\", function () {\r",
+									"    jsonData.data.results.forEach(function (result) {\r",
+									"        pm.expect(result.name).to.be.a('string');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name should be ordered alphabetically\", function () {\r",
+									"    var names = jsonData.data.results.map(function (result) {\r",
+									"        return result.name;\r",
+									"    });\r",
+									"\r",
+									"    var sortedNames = names.slice().sort();\r",
+									"    pm.expect(names).to.deep.equal(sortedNames);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())\r",
+									"\r",
+									"    var url = pm.environment.get(\"URL\")\r",
+									"    var characters = pm.environment.get(\"characters\")\r",
+									"    var limit = pm.environment.get(\"limit\")\r",
+									"    \r",
+									"    var request = url+\"/v1/public/comics?apikey=\"+pubkey+\"&ts=\"+ts+\"&hash=\"+hash+\"&characters=\"+characters+\"&limit=\"+limit\r",
+									"\r",
+									"pm.sendRequest(request, function (err, response) {\r",
+									"    var jsonData = response.json();\r",
+									"    pm.environment.set(\"comicId\", jsonData.data.results[_.random(0,99)].id );\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&orderBy=name",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "orderBy",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [200] - Order by name descending",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status returning Ok\", function () {\r",
+									"    pm.expect(jsonData.status).to.eql(\"Ok\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Count should not be empty\", function () {\r",
+									"    pm.expect(jsonData.data.count).to.not.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results array should not be empty\", function () {\r",
+									"    pm.expect(jsonData.data.results).to.be.an('array').and.to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header etag should return\", function () {\r",
+									"    pm.expect(pm.response.headers.has('etag')).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Id should be a number\", function () {\r",
+									"    jsonData.data.results.forEach(function (result) {\r",
+									"        pm.expect(result.id).to.be.a('number');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name should be a string\", function () {\r",
+									"    jsonData.data.results.forEach(function (result) {\r",
+									"        pm.expect(result.name).to.be.a('string');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name should be ordered alphabetically descending\", function () {\r",
+									"    var names = jsonData.data.results.map(function (result) {\r",
+									"        return result.name;\r",
+									"    });\r",
+									"\r",
+									"    var sortedNames = names.slice().sort().reverse();\r",
+									"    pm.expect(names).to.deep.equal(sortedNames);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())\r",
+									"\r",
+									"    var url = pm.environment.get(\"URL\")\r",
+									"    var characters = pm.environment.get(\"characters\")\r",
+									"    var limit = pm.environment.get(\"limit\")\r",
+									"    \r",
+									"    var request = url+\"/v1/public/comics?apikey=\"+pubkey+\"&ts=\"+ts+\"&hash=\"+hash+\"&characters=\"+characters+\"&limit=\"+limit\r",
+									"\r",
+									"pm.sendRequest(request, function (err, response) {\r",
+									"    var jsonData = response.json();\r",
+									"    pm.environment.set(\"comicId\", jsonData.data.results[_.random(0,99)].id );\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&orderBy=-name",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "orderBy",
+									"value": "-name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [401] - Invalid Hash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 401d\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"That hash, timestamp and key combination is invalid.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+\"foo\"+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&orderBy=name",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "orderBy",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [405] - Method Not Allowed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"POST is not allowed\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{privateKey}}&ts={{ts}}&hash={{hash}}&orderBy=name",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{privateKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "orderBy",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [409] - Missing API Key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"You must provide a user key.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?ts={{ts}}&hash={{hash}}&orderBy=name",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "orderBy",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [409] - Missing Hash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"You must provide a hash.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{publicKey}}&ts={{ts}}&orderBy=name",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "orderBy",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [409] - Missing Timestamp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message returning error\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"You must provide a timestamp.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{publicKey}}&hash={{hash}}&orderBy=name",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}",
+									"disabled": true
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "orderBy",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [409] - Limit invalid or below 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status returning the message of error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.status).to.eql(\"You must pass an integer limit greater than 0.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should be not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&limit=h",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "limit",
+									"value": "h"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [409] - Limit greater than 100",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status returning the message of error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.status).to.eql(\"You may not request more than 100 items.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should be not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&limit=101",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "limit",
+									"value": "101"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [409] - Empty parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status returning the message of error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.status).to.eql(\"name cannot be blank if it is set\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should be not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&name=",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "name",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/public/comics/{comicId}/characters - [409] - Invalid or unrecognized parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status returning the message of error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.status).to.eql(\"We don't recognize the parameter foo\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should be not okay to process\", function () {\r",
+									"    pm.response.to.be.error;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Results should not be empty\", function () {\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    var ts = new Date().getTime();\r",
+									"    pm.environment.set(\"ts\", ts)\r",
+									"\r",
+									"    var pubkey = pm.environment.get(\"publicKey\");\r",
+									"    var pvtkey = pm.environment.get(\"privateKey\");\r",
+									"    var message = ts+pvtkey+pubkey;\r",
+									"    var hash = CryptoJS.MD5(message);\r",
+									"    pm.environment.set(\"hash\", hash.toString())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v1/public/comics/{{comicId}}/characters?apikey={{publicKey}}&ts={{ts}}&hash={{hash}}&foo=bar",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"public",
+								"comics",
+								"{{comicId}}",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{publicKey}}"
+								},
+								{
+									"key": "ts",
+									"value": "{{ts}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "foo",
+									"value": "bar"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
