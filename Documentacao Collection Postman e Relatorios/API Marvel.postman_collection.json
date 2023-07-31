@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "1450d1b8-3e0b-4d50-bcaa-6ba3463c91b9",
-		"name": "Marvel API",
+		"name": "API Marvel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "28808961"
 	},
@@ -959,7 +959,7 @@
 					"response": []
 				},
 				{
-					"name": "/v1/public/comics  - [409] - Empty parameter Copy",
+					"name": "/v1/public/comics  - [409] - Invalid or unrecognized parameter",
 					"event": [
 						{
 							"listen": "test",

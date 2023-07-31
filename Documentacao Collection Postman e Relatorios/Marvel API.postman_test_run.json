@@ -1,0 +1,1364 @@
+{
+	"id": "8458a0ca-fec9-4e5c-b988-6e73fff2e41c",
+	"name": "Marvel API",
+	"timestamp": "2023-07-31T11:50:46.583Z",
+	"collection_id": "28808961-1450d1b8-3e0b-4d50-bcaa-6ba3463c91b9",
+	"folder_id": "28808961-64226830-162c-4739-821d-d5545036e30a",
+	"environment_id": "28808961-3ddaad61-dca8-4328-b577-badb9a8db870",
+	"totalPass": 129,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2023-07-31T11:50:31.604Z",
+	"totalFail": 3,
+	"results": [
+		{
+			"id": "af401d20-a5e2-47f9-a15a-e1fc854cc411",
+			"name": "/v1/public/comics - [200] - Order by issueNumber ascending",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804231938&hash=cac90d6e20c8eb65d7946e291e7319aa&characters=1009491&limit=100&orderBy=issueNumber",
+			"time": 2264,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Content-Type is present": true,
+				"A status property is present and is 'success'": true,
+				"Status code is 200": true,
+				"Response time is less than 500ms": false,
+				"Status returning Ok": true,
+				"Response should be okay to process": true,
+				"Count should not be empty": true,
+				"Results array should not be empty": true,
+				"Header etag should return": true,
+				"Id should be a number": true,
+				"Issue number should be ordered in ascending order": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"A status property is present and is 'success'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Status returning Ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Count should not be empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results array should not be empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Header etag should return": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Id should be a number": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Issue number should be ordered in ascending order": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				2264
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"A status property is present and is 'success'": true,
+					"Status code is 200": true,
+					"Response time is less than 500ms": false,
+					"Status returning Ok": true,
+					"Response should be okay to process": true,
+					"Count should not be empty": true,
+					"Results array should not be empty": true,
+					"Header etag should return": true,
+					"Id should be a number": true,
+					"Issue number should be ordered in ascending order": true
+				}
+			]
+		},
+		{
+			"id": "75c9e309-dfce-48e1-be2b-5e7baea92e9c",
+			"name": "/v1/public/comics - [200] - Order by issueNumber descending",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804234438&hash=bf51037280e1ad766cb34ea74b1677bb&characters=1009491&limit=100&orderBy=-issueNumber",
+			"time": 1368,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Content-Type is present": true,
+				"A status property is present and is 'success'": true,
+				"Status code is 200": true,
+				"Response time is less than 500ms": false,
+				"Status returning Ok": true,
+				"Response should be okay to process": true,
+				"Count should not be empty": true,
+				"Results array should not be empty": true,
+				"Header etag should return": true,
+				"Id should be a number": true,
+				"Results should be ordered by descending issueNumber": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"A status property is present and is 'success'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Status returning Ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Count should not be empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results array should not be empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Header etag should return": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Id should be a number": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should be ordered by descending issueNumber": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1368
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"A status property is present and is 'success'": true,
+					"Status code is 200": true,
+					"Response time is less than 500ms": false,
+					"Status returning Ok": true,
+					"Response should be okay to process": true,
+					"Count should not be empty": true,
+					"Results array should not be empty": true,
+					"Header etag should return": true,
+					"Id should be a number": true,
+					"Results should be ordered by descending issueNumber": true
+				}
+			]
+		},
+		{
+			"id": "35cdc661-e2e4-4e14-9e7e-460a9b5f8e7b",
+			"name": "/v1/public/comics  - [401] - Invalid Hash",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804235933&hash=5c6400aea3d30eb8b8ade234a861cb8b&characters=1009491&limit=100",
+			"time": 249,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				249
+			],
+			"allTests": [
+				{
+					"Status code is 401": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "b6836149-8277-4f03-ad2e-9956ebe035b6",
+			"name": "/v1/public/comics  - [405] - Method Not Allowed",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804236237&hash=78326b1d096c311eebe0254659222ed0&characters=1009491&limit=100",
+			"time": 236,
+			"responseCode": {
+				"code": 405,
+				"name": "Method Not Allowed"
+			},
+			"tests": {
+				"Status code is 405": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 405": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				236
+			],
+			"allTests": [
+				{
+					"Status code is 405": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "6e338bfc-e9eb-4b63-bcc1-5cc411e0ae42",
+			"name": "/v1/public/comics  - [409] - Missing API Key",
+			"url": "https://gateway.marvel.com/v1/public/comics?ts=1690804236527&hash=082515b5469f0a9968f4df1196418391&characters=1009491&limit=100",
+			"time": 258,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				258
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "497c4e34-b18d-4294-a142-f1b828aa283c",
+			"name": "/v1/public/comics  - [409] - Missing Hash",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804236827&characters=1009491&limit=100",
+			"time": 224,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				224
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "b5c67051-10b0-420a-a5a2-dea680724c73",
+			"name": "/v1/public/comics  - [409] - Missing Timestamp",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&hash=257ea7e80383f88bc121615a5ad45254&characters=1009491&limit=100",
+			"time": 181,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				181
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "838b6d0b-af62-4b88-bd45-0dce98d21c41",
+			"name": "/v1/public/comics  - [409] - Limit invalid or below 1",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804237369&hash=18f458845794bef11d5c2d11e6ea3542&characters=1009491&limit=h",
+			"time": 225,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				225
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "2d03a08b-d1c5-40e1-aa45-a5e92c7290b6",
+			"name": "/v1/public/comics  - [409] - Limit greater than 100",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804237661&hash=614573efd7da3a88ff573e5b0ba7fe48&characters=1009491&limit=101",
+			"time": 270,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				270
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "1f6662e9-6628-4458-8864-2fe96c2483bb",
+			"name": "/v1/public/comics  - [409] - Empty parameter",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804237986&hash=94fa224497b1fd82cb5b455f0af7a383&characters=1009491&limit=100&stories=",
+			"time": 222,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				222
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "88b0a4ec-fbb2-46b7-92c5-1608efdc86d5",
+			"name": "/v1/public/comics  - [409] - Invalid or unrecognized parameter",
+			"url": "https://gateway.marvel.com/v1/public/comics?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804238292&hash=d4ae44767a3dfdcb2b6c1803287de21c&characters=1009491&limit=100&foo=bar",
+			"time": 213,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				213
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "21a0fdb1-5d0b-4e93-b9fa-4ca2cbe9a786",
+			"name": "/v1/public/comics/{comicId}/characters - [200] - Order by name ascending Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/10560/characters?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804238577&hash=ab10e22fd03ec8b8dbb32e2eb6fd7e81&orderBy=name",
+			"time": 286,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 500ms": true,
+				"Status returning Ok": true,
+				"Response should be okay to process": true,
+				"Count should not be empty": true,
+				"Results array should not be empty": true,
+				"Header etag should return": true,
+				"Id should be a number": true,
+				"Name should be a string": true,
+				"Name should be ordered alphabetically": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status returning Ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Count should not be empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results array should not be empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Header etag should return": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Id should be a number": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name should be a string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name should be ordered alphabetically": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				286
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 500ms": true,
+					"Status returning Ok": true,
+					"Response should be okay to process": true,
+					"Count should not be empty": true,
+					"Results array should not be empty": true,
+					"Header etag should return": true,
+					"Id should be a number": true,
+					"Name should be a string": true,
+					"Name should be ordered alphabetically": true
+				}
+			]
+		},
+		{
+			"id": "07a594ef-326f-4086-89b2-8f59c7b9b5f8",
+			"name": "/v1/public/comics/{comicId}/characters - [200] - Order by name descending Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804241009&hash=18fc3c0f494a7642bbf30cc282b84399&orderBy=-name",
+			"time": 620,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 500ms": false,
+				"Status returning Ok": true,
+				"Response should be okay to process": true,
+				"Count should not be empty": true,
+				"Results array should not be empty": true,
+				"Header etag should return": true,
+				"Id should be a number": true,
+				"Name should be a string": true,
+				"Name should be ordered alphabetically descending": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Status returning Ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Count should not be empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results array should not be empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Header etag should return": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Id should be a number": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name should be a string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name should be ordered alphabetically descending": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				620
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 500ms": false,
+					"Status returning Ok": true,
+					"Response should be okay to process": true,
+					"Count should not be empty": true,
+					"Results array should not be empty": true,
+					"Header etag should return": true,
+					"Id should be a number": true,
+					"Name should be a string": true,
+					"Name should be ordered alphabetically descending": true
+				}
+			]
+		},
+		{
+			"id": "9ea23dba-5937-4c1b-beb6-2132d611be1b",
+			"name": "/v1/public/comics/{comicId}/characters - [401] - Invalid Hash Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804243427&hash=831548d83644a62996915d478251cedb&orderBy=name",
+			"time": 237,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401d": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				237
+			],
+			"allTests": [
+				{
+					"Status code is 401d": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "299adbec-dc81-4db7-b9e7-89ba5b8f2e6b",
+			"name": "/v1/public/comics/{comicId}/characters - [405] - Method Not Allowed Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?apikey=6bc9a4d768293f857302aebcc3869e330f057cc9&ts=1690804243728&hash=89901b2847dc2852bbb89f558c119977&orderBy=name",
+			"time": 238,
+			"responseCode": {
+				"code": 405,
+				"name": "Method Not Allowed"
+			},
+			"tests": {
+				"Status code is 405": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 405": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				238
+			],
+			"allTests": [
+				{
+					"Status code is 405": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "596ed5cf-9cba-4501-b188-1b3aa4117bdf",
+			"name": "/v1/public/comics/{comicId}/characters - [409] - Missing API Key Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?ts=1690804244024&hash=61de95385ec4dfa41a337d18cebfc0d5&orderBy=name",
+			"time": 442,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				442
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "7b1b0c33-b533-47e7-90f9-eb9474103224",
+			"name": "/v1/public/comics/{comicId}/characters - [409] - Missing Hash Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804244541&orderBy=name",
+			"time": 210,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				210
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "c92d087d-c271-460d-a1ef-ad9ca5ababd4",
+			"name": "/v1/public/comics/{comicId}/characters - [409] - Missing Timestamp Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?apikey=dd79e23a749219e74887e26a77dc454f&hash=57ad147163628e9a5dfcbd09d086e911&orderBy=name",
+			"time": 234,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Message returning error": true,
+				"Response should not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message returning error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				234
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Message returning error": true,
+					"Response should not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "a723b1d1-757e-46d2-8bd7-99a7f324a1ea",
+			"name": "/v1/public/comics/{comicId}/characters - [409] - Limit invalid or below 1 Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804245127&hash=faf11b777ca327ffbe05ebcd07f047f0&limit=h",
+			"time": 237,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Status returning the message of error": true,
+				"Response should be not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status returning the message of error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				237
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Status returning the message of error": true,
+					"Response should be not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "ef233a67-3a45-46f8-8a86-e1905f32a109",
+			"name": "/v1/public/comics/{comicId}/characters - [409] - Limit greater than 100 Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804245458&hash=e8142389e888706eb8d2f5cb861f6042&limit=101",
+			"time": 219,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Status returning the message of error": true,
+				"Response should be not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status returning the message of error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				219
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Status returning the message of error": true,
+					"Response should be not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "0264c9d8-412e-46a4-92c6-d56d4a68a747",
+			"name": "/v1/public/comics/{comicId}/characters - [409] - Empty parameter Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804245743&hash=f4cb1c2dec8f876704e028287734b962&name=",
+			"time": 355,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Status returning the message of error": true,
+				"Response should be not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status returning the message of error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				355
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Status returning the message of error": true,
+					"Response should be not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		},
+		{
+			"id": "682c2d04-9121-4521-9c9c-ccd89bfd6360",
+			"name": "/v1/public/comics/{comicId}/characters - [409] - Invalid or unrecognized parameter Copy",
+			"url": "https://gateway.marvel.com/v1/public/comics/37903/characters?apikey=dd79e23a749219e74887e26a77dc454f&ts=1690804246186&hash=77c4679b6ec46642a0a4b9c7c9aa9dc1&foo=bar",
+			"time": 258,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"Response time is less than 500ms": true,
+				"Status returning the message of error": true,
+				"Response should be not okay to process": true,
+				"Results should not be empty": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status returning the message of error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be not okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Results should not be empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				258
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"Response time is less than 500ms": true,
+					"Status returning the message of error": true,
+					"Response should be not okay to process": true,
+					"Results should not be empty": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 9046,
+	"collection": {
+		"requests": [
+			{
+				"id": "af401d20-a5e2-47f9-a15a-e1fc854cc411",
+				"method": "GET"
+			},
+			{
+				"id": "75c9e309-dfce-48e1-be2b-5e7baea92e9c",
+				"method": "GET"
+			},
+			{
+				"id": "35cdc661-e2e4-4e14-9e7e-460a9b5f8e7b",
+				"method": "GET"
+			},
+			{
+				"id": "b6836149-8277-4f03-ad2e-9956ebe035b6",
+				"method": "POST"
+			},
+			{
+				"id": "6e338bfc-e9eb-4b63-bcc1-5cc411e0ae42",
+				"method": "GET"
+			},
+			{
+				"id": "497c4e34-b18d-4294-a142-f1b828aa283c",
+				"method": "GET"
+			},
+			{
+				"id": "b5c67051-10b0-420a-a5a2-dea680724c73",
+				"method": "GET"
+			},
+			{
+				"id": "838b6d0b-af62-4b88-bd45-0dce98d21c41",
+				"method": "GET"
+			},
+			{
+				"id": "2d03a08b-d1c5-40e1-aa45-a5e92c7290b6",
+				"method": "GET"
+			},
+			{
+				"id": "1f6662e9-6628-4458-8864-2fe96c2483bb",
+				"method": "GET"
+			},
+			{
+				"id": "88b0a4ec-fbb2-46b7-92c5-1608efdc86d5",
+				"method": "GET"
+			},
+			{
+				"id": "21a0fdb1-5d0b-4e93-b9fa-4ca2cbe9a786",
+				"method": "GET"
+			},
+			{
+				"id": "07a594ef-326f-4086-89b2-8f59c7b9b5f8",
+				"method": "GET"
+			},
+			{
+				"id": "9ea23dba-5937-4c1b-beb6-2132d611be1b",
+				"method": "GET"
+			},
+			{
+				"id": "299adbec-dc81-4db7-b9e7-89ba5b8f2e6b",
+				"method": "POST"
+			},
+			{
+				"id": "596ed5cf-9cba-4501-b188-1b3aa4117bdf",
+				"method": "GET"
+			},
+			{
+				"id": "7b1b0c33-b533-47e7-90f9-eb9474103224",
+				"method": "GET"
+			},
+			{
+				"id": "c92d087d-c271-460d-a1ef-ad9ca5ababd4",
+				"method": "GET"
+			},
+			{
+				"id": "a723b1d1-757e-46d2-8bd7-99a7f324a1ea",
+				"method": "GET"
+			},
+			{
+				"id": "ef233a67-3a45-46f8-8a86-e1905f32a109",
+				"method": "GET"
+			},
+			{
+				"id": "0264c9d8-412e-46a4-92c6-d56d4a68a747",
+				"method": "GET"
+			},
+			{
+				"id": "682c2d04-9121-4521-9c9c-ccd89bfd6360",
+				"method": "GET"
+			}
+		]
+	}
+}
